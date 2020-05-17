@@ -19,48 +19,11 @@ namespace PersonManagement.Controllers
             _context = context;
         }
 
-        // GET: People
-/*public async Task<IActionResult> Index()
-{
-    var personManagementContext = _context.Person.Include(p => p.Department).Include(p => p.Position);
-    return View(await personManagementContext.ToListAsync());
-}*/
-
 // GET: People/Arne
 public async Task<IActionResult> Index(string searchString)
 {
             var people = from p in _context.Person select p;
-                          /*select new Person
-                         {
-                             Name = p.Name,
-                             Mobil = p.Mobil,
-                             Street = p.Street,
-                             Streetnumber = p.Streetnumber,
-                             Postnumber = p.Postnumber,
-                             City = p.City,
-                             Province = p.Province,
-                             Email = p.Email,
-                             Department = p.Department,
-                             Position = p.Position
-                         };
-            /*var people = from p in _context.Person
-             join d in _context.Department on p.DepartmentId equals d.DepartmentId
-             join o in _context.Position on p.PositionId equals o.PositionId
-             select new FullPersonInfor
-             {
-                 Name = p.Name,
-                 Mobil = p.Mobil,
-                 Street = p.Street,
-                 Streetnumber = p.Streetnumber,
-                 Postnumber = p.Postnumber,
-                 City = p.City,
-                 Province = p.Province,
-                 Email = p.Email,
-                 DepartmentName = d.DepartmentName,
-                 PositionName = o.PositionName
-             };/*/
-
-
+                         
 if (!String.IsNullOrEmpty(searchString))
 {
 people = people.Where(p => p.Name.Contains(searchString));
